@@ -1,0 +1,25 @@
+{
+  "name": "tator-dashboard",
+  "version": "0.0.0",
+  "description": "A SmartDashboard replacement for FRC Team 2122",
+  "private": true,
+  "main": "app/index.html",
+  "license": "MIT",
+  "author": "Alex Mikhalev <alexmikhalevalex@gmail.com>",
+  "dependencies": {
+    "angular": "~1.2.18",
+    "bootstrap": "~3.2.0",
+    "jquery": "~2.1.1",
+    "angular-bootstrap": "~0.11.0",
+    "angular-route": "~1.2.18",
+    "font-awesome": "~4.1.0"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "app/components",
+    "test",
+    "tests"
+  ]
+}

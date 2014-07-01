@@ -1,0 +1,13 @@
+# IDE project files
+/.idea
+
+# Package manager files
+/node_modules
+/app/components
+
+# Less compiled to css
+/app/styles/*.css
+
+# node-webkit build
+/.nwcache
+/nwbuild

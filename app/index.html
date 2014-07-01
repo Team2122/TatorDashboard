@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>TatorDashboard</title>
+
+    <!-- CSS Files -->
+    <!-- Libraries -->
+    <link href="components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
+    <!-- Custom Stylesheets -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endinject -->
+</head>
+
+<body ng-app="TatorDashboard">
+
+<ng-include src="'views/navbar.html'"></ng-include>
+
+<div class="container-fluid">
+    <div class="row row-offcanvas row-offcanvas-left" ng-init="isCollapsed = true" ng-class="{'active': !isCollapsed}">
+        <ng-include src="'views/sidebar.html'"></ng-include>
+
+        <div class="col-sm-9 col-md-10 main">
+            <!-- Sidebar toggle button -->
+            <p class="visible-xs">
+                <button type="button" class="btn btn-primary btn-xs" ng-click="isCollapsed = !isCollapsed">
+                    <i class="fa" ng-class="{'fa-chevron-right': isCollapsed, 'fa-chevron-left': !isCollapsed}"></i>
+                </button>
+            </p>
+            <!-- Main page content gets inserted here -->
+            <div ng-view></div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Javascript Files
+======================-->
+<!-- Libraries -->
+<script src="components/jquery/dist/jquery.min.js"></script>
+<script src="components/angular/angular.min.js"></script>
+<script src="components/angular-route/angular-route.min.js"></script>
+<script src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<!-- App Code -->
+<!-- inject:js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/dev.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/navbar.js"></script>
+<script src="scripts/controllers/sidebar.js"></script>
+<!-- endinject -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/holder/2.3.1/holder.min.js"></script>
+</body>
+</html>
