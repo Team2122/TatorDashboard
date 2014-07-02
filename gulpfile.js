@@ -22,6 +22,16 @@ var files = {
   build: ['package.json', 'app/index.html', 'app/views/**/*', 'app/components/**/*', 'app/scripts/**/*', 'app/styles/**/*.css']
 };
 
+var nw = new NwBuilder({
+  files: files.build,
+  platforms: ['win', 'osx', 'linux32', 'linux64'],
+  appName: 'TatorDashboard',
+  appVersion: pkg.version,
+  buildDir: 'nwbuild',
+  cacheDir: '.nwcache',
+  version: 'v0.9.2'
+});
+
 gulp.task('jshint', function () {
   return gulp.src(files.js)
     .pipe(jshint())
@@ -46,15 +56,6 @@ gulp.task('inject', ['less'], function () {
 });
 
 gulp.task('build', function () {
-  var nw = new NwBuilder({
-    files: files.build,
-    platforms: ['win', 'osx', 'linux32', 'linux64'],
-    appName: 'TatorDashboard',
-    appVersion: pkg.version,
-    buildDir: 'nwbuild',
-    cacheDir: '.nwcache',
-    version: 'v0.9.2'
-  });
   nw.on('log', function (message) {
     gutil.log('node-webkit-builder', message);
   });
@@ -79,7 +80,11 @@ gulp.task('run', ['watch'], function (done) {
     reload = socket;
   }).listen(9292);
 
-  child.spawn('nw', ['./']).on('exit', done);
+  child.spawn('nw', ['./'])
+    .on('error', function (err) {
+      done("Error running webkit app. Do you have the 'nw' executable in your PATH?");
+    })
+    .on('exit', done);
 });
 
 gulp.task('reload', function () {
