@@ -23,21 +23,8 @@
 <ng-include src="'views/navbar.html'"></ng-include>
 
 <div class="container-fluid">
-    <div class="row row-offcanvas row-offcanvas-left" ng-init="isCollapsed = true" ng-class="{'active': !isCollapsed}">
-        <ng-include src="'views/sidebar.html'"></ng-include>
-
-        <div class="col-sm-9 col-md-10 main">
-            <!-- Sidebar toggle button -->
-            <p class="visible-xs">
-                <button type="button" class="btn btn-primary btn-xs" ng-click="isCollapsed = !isCollapsed">
-                    <i class="fa" ng-class="{'fa-chevron-right': isCollapsed, 'fa-chevron-left': !isCollapsed}"></i>
-                </button>
-            </p>
-            <!-- Main page content gets inserted here -->
-            <div ng-view></div>
-        </div>
-
-    </div>
+    <!-- Main page content gets inserted here -->
+    <div ng-view></div>
 </div>
 
 
