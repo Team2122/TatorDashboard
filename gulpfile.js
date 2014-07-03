@@ -71,11 +71,11 @@ var reload;
 
 gulp.task('watch', function () {
   gulp.watch(files.less, ['less']);
-  gulp.watch(files.js, ['jshint']);
+  gulp.watch(files.js, ['jshint', 'inject']);
   gulp.watch(files.build, ['reload']);
 });
 
-gulp.task('run', ['watch'], function (done) {
+gulp.task('run', ['inject', 'less', 'watch'], function (done) {
   net.createServer(function (socket) {
     reload = socket;
   }).listen(9292);
@@ -88,7 +88,9 @@ gulp.task('run', ['watch'], function (done) {
 });
 
 gulp.task('reload', function () {
-  reload.write('reload');
+  if (reload) {
+    reload.write('reload');
+  }
 });
 
 gulp.task('default', ['jshint', 'inject', 'build']);
