@@ -1,0 +1,6 @@
+<div class="alerts" ng-controller="AlertsCtrl">
+    <alert class="alert-animate" ng-repeat="alert in alerts" type="{{alert.type}}"
+           close="closeAlert($index)">
+        {{alert.message}}
+    </alert>
+</div>
