@@ -70,7 +70,7 @@ gulp.task('clean', function () {
 var reload;
 
 gulp.task('watch', function () {
-  gulp.watch(files.less, ['less']);
+  gulp.watch(files.less, ['less', 'inject']);
   gulp.watch(files.js, ['jshint', 'inject']);
   gulp.watch(files.build, ['reload']);
 });
@@ -80,11 +80,12 @@ gulp.task('run', ['inject', 'less', 'watch'], function (done) {
     reload = socket;
   }).listen(9292);
 
-  child.spawn('nw', ['./'])
-    .on('error', function (err) {
+  var proc = child.spawn('nw', ['./']);
+  proc.on('error', function (err) {
       done("Error running webkit app. Do you have the 'nw' executable in your PATH?");
-    })
-    .on('exit', done);
+    });
+  proc.on('exit', done);
+  proc.stderr.pipe(process.stderr);
 });
 
 gulp.task('reload', function () {
