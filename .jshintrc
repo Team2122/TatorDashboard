@@ -39,6 +39,7 @@
     "it": true,
     "clientSockets": true,
     "__dirname": true,
-    "angular": true
+    "angular": true,
+    "$": true
   }
 }
