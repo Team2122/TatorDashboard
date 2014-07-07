@@ -9,11 +9,12 @@ angular.module('TatorDashboard')
     };
 
     $scope.addAlert = function (type, message, timeout) {
-      var len = $scope.alerts.push({type: type, message: message});
+      var alert = {type: type, message: message};
+      $scope.alerts.push(alert);
       if (timeout) {
         $timeout(function () {
-          $scope.closeAlert(len - 1);
-        }, timeout);
+          $scope.closeAlert($scope.alerts.indexOf(alert));
+        }, angular.isNumber(timeout) ? timeout : 5000);
       }
     };
 
