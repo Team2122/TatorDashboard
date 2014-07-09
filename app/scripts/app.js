@@ -7,6 +7,10 @@ angular.module('TatorDashboard', ['ngRoute', 'ngAnimate', 'ui.bootstrap'])
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/settings', {
+        templateUrl: 'views/settings.html',
+        controller: 'SettingsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

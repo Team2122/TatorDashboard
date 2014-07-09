@@ -11,3 +11,7 @@
 # node-webkit build
 /.nwcache
 /nwbuild
+
+# App files
+.team_list_cache
+.settings.json

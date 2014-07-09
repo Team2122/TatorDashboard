@@ -1,0 +1,25 @@
+<h1 class="page-header">Settings</h1>
+<form class="form-horizontal" name="settingsForm">
+    <h4>General</h4>
+
+    <div class="form-group" show-errors>
+        <label for="inputTeamNumber" class="col-sm-2 control-label">Team Number:</label>
+
+        <div class="col-sm-10">
+            <input id="inputTeamNumber" class="form-control" type="text" name="teamNumber"
+                   placeholder="The team number of your robot"
+                   ng-model="settings.teamNumber"
+                   typeahead="team.number + ', ' + team.name for team in teamsList | filter:$viewValue | limitTo:8"
+                   typeahead-on-select="formatTeam($item)"
+                   ng-pattern="/^\d{1,4}$/" required>
+        </div>
+    </div>
+</form>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <button type="button" class="btn btn-primary navbar-btn" ng-click="save()">Save
+        </button>
+        <button type="button" class="btn btn-danger navbar-btn" ng-click="revert()">Revert
+        </button>
+    </div>
+</nav>
