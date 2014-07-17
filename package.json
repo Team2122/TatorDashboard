@@ -1,6 +1,6 @@
 {
   "name": "tator-dashboard",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A SmartDashboard replacement for FRC Team 2122",
   "private": true,
   "main": "app/index.html",
