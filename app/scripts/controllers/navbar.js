@@ -5,12 +5,12 @@ angular.module('TatorDashboard')
     $scope.isCollapsed = true;
     $scope.links = [
       {
-        name: "Dashboard",
-        address: "/dashboard"
+        name: 'Dashboard',
+        address: '/dashboard'
       },
       {
-        name: "Settings",
-        address: "/settings"
+        name: 'Settings',
+        address: '/settings'
       }
     ];
     $scope.isActive = function (link) {
