@@ -9,6 +9,10 @@ angular.module('TatorDashboard')
         address: '/dashboard'
       },
       {
+        name: 'NetConsole',
+        address: '/netConsole'
+      },
+      {
         name: 'Settings',
         address: '/settings'
       }

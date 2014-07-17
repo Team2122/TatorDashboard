@@ -6,6 +6,20 @@ body {
   padding-top: 70px; // 50px navbar + a bit extra
 }
 
+// Sigh... 100% height hack
+html, body {
+  position: relative;
+  height: 100%;
+}
+
+body > .container-fluid {
+  height: calc(~"100% - 70px"); // 70 px padding
+}
+
+div [ng-view] {
+  height: 100%;
+}
+
 footer {
   padding-top: 10px;
   padding-right: 15px;

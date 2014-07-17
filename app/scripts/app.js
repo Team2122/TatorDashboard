@@ -11,6 +11,10 @@ angular.module('TatorDashboard', ['ngRoute', 'ngAnimate', 'ui.bootstrap'])
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl'
       })
+      .when('/netConsole', {
+        templateUrl: 'views/netConsole.html',
+        controller: 'NetConsoleCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

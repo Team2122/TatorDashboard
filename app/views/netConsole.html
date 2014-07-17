@@ -1,0 +1,13 @@
+<h1 class="page-header">NetConsole <small>Robot Ip Address: {{robotIp}}</small></h1>
+<div class="netconsole">
+    <pre ng-bind="buffer"></pre>
+    <form class="form form-horizontal">
+        <div class="input-group col-xs-12">
+            <label for="messageInput" class="sr-only">Message</label>
+            <input type="text" id="messageInput" class="form-control col-xs-12" ng-model="message" placeholder="Message">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" ng-click="send()">Send</button>
+            </span>
+        </div>
+    </form>
+</div>

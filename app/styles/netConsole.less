@@ -1,0 +1,24 @@
+/**
+ * NetConsole
+ */
+
+@import "../components/bootstrap/less/variables";
+
+@gray-darkest: #080808;
+
+.netconsole {
+  height: 100%;
+  padding-bottom: 55px;
+}
+
+.netconsole > pre {
+  background: @gray-darkest;
+  color: @component-active-color;
+
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.netconsole input {
+  font-family: @font-family-monospace;
+}
