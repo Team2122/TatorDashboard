@@ -19,7 +19,7 @@ angular.module('TatorDashboard')
     listener.on('error', onError);
     sender.on('error', onError);
 
-    listener.on('message', function (msg, rinfo) {
+    listener.on('message', function (msg) {
       netConsole.emit('message', msg.toString());
     });
 
