@@ -5,6 +5,7 @@ var jshint = require('gulp-jshint');
 var less = require('gulp-less');
 var inject = require('gulp-inject');
 var rimraf = require('gulp-rimraf');
+var install = require('gulp-install');
 var gutil = require('gulp-util');
 
 var path = require('path');
@@ -19,6 +20,7 @@ var files = {
   less: ['app/styles/**/*.less'],
   css: ['app/styles/**/*.css'],
   index: 'app/index.html',
+  install: ['package.json', 'bower.json'],
   build: ['package.json', 'app/index.html', 'app/views/**/*', 'app/components/**/*', 'app/scripts/**/*', 'app/styles/**/*.css']
 };
 
@@ -67,6 +69,11 @@ gulp.task('clean', function () {
     .pipe(rimraf());
 });
 
+gulp.task('install', function () {
+  return gulp.src(files.install)
+    .pipe(install());
+});
+
 var reload;
 
 gulp.task('watch', function () {
@@ -75,7 +82,7 @@ gulp.task('watch', function () {
   gulp.watch(files.build, ['reload']);
 });
 
-gulp.task('run', ['inject', 'less', 'watch'], function (done) {
+gulp.task('run', ['install', 'inject', 'less', 'watch'], function (done) {
   net.createServer(function (socket) {
     reload = socket;
   }).listen(9292);
@@ -94,4 +101,4 @@ gulp.task('reload', function () {
   }
 });
 
-gulp.task('default', ['jshint', 'inject', 'build']);
+gulp.task('default', ['install', 'jshint', 'inject', 'build']);
