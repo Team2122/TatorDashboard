@@ -6,7 +6,13 @@ angular.module('TatorDashboard')
       teamNumber: '2122'
     });
     settings.load().catch(function (err) {
-      alerts.add('danger', 'Failed to load settings: ' + err);
+      if (err.code === 'ENOENT') { // Doesn't exist, create it
+        settings.save().catch(function (err) {
+          alerts.add('danger', 'Failed to write to settings file: ' + err);
+        });
+      } else {
+        alerts.add('danger', 'Failed to load settings: ' + JSON.stringify(err));
+      }
     });
   })
   .controller('SettingsCtrl', function ($scope, teamList, settings, alerts) {
