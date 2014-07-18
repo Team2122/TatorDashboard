@@ -4,7 +4,7 @@ angular.module('TatorDashboard')
   .factory('settings', function ($q) {
     var path = require('path');
     var fs = require('fs');
-    var SETTINGS_FILE_NAME = path.join(process.env.PWD, '.settings.json');
+    var SETTINGS_FILE_NAME = path.join(process.env.PWD || path.dirname(process.execPath), '.settings.json');
 
     var settings = {};
 
