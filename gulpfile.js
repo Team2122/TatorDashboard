@@ -89,8 +89,8 @@ gulp.task('run', ['install', 'inject', 'less', 'watch'], function (done) {
 
   var proc = child.spawn('nw', ['./']);
   proc.on('error', function (err) {
-      done("Error running webkit app. Do you have the 'nw' executable in your PATH?");
-    });
+    done("Error running webkit app. Do you have the 'nw' executable in your PATH?\n" + err);
+  });
   proc.on('exit', done);
   proc.stderr.pipe(process.stderr);
 });
