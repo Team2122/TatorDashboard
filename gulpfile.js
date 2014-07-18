@@ -7,6 +7,11 @@ var inject = require('gulp-inject');
 var rimraf = require('gulp-rimraf');
 var install = require('gulp-install');
 var gutil = require('gulp-util');
+var git = require('gulp-git');
+var bump = require('gulp-bump');
+var filter = require('gulp-filter');
+var tag_version = require('gulp-tag-version');
+var prompt = require('gulp-prompt');
 
 var path = require('path');
 var NwBuilder = require('node-webkit-builder');
@@ -21,6 +26,7 @@ var files = {
   css: ['app/styles/**/*.css'],
   index: 'app/index.html',
   install: ['package.json', 'bower.json'],
+  bump: ['package.json', 'bower.json'],
   build: ['package.json', 'app/index.html', 'app/views/**/*', 'app/components/**/*', 'app/scripts/**/*', 'app/styles/**/*.css']
 };
 
@@ -102,3 +108,27 @@ gulp.task('reload', function () {
 });
 
 gulp.task('default', ['install', 'jshint', 'inject', 'build']);
+
+function bumpTagAndPush(type) {
+  gulp.src('package.json')
+    .pipe(prompt.confirm('This command will bump version numbers, tag the version, and push everything to Github.'))
+    .pipe(gulp.src(files.bump))
+    .pipe(bump({type: type}))
+    .pipe(gulp.dest('./'))
+    .pipe(git.commit('Version Bump'))
+    .pipe(filter('package.json')) // Read only one file for package version
+    .pipe(tag_version())
+    .pipe(git.push('origin', 'master', {args: git s'--tags'}));
+}
+
+gulp.task('patch', function () {
+  bumpTagAndPush('patch');
+});
+
+gulp.task('feature', function () {
+  bumpTagAndPush('feature');
+});
+
+gulp.task('release', function () {
+  bumpTagAndPush('release');
+});
