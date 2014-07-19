@@ -13,7 +13,9 @@ angular.module('TatorDashboard')
     };
 
     netConsole.on('message', function (msg) {
-      $scope.buffer += msg;
+      $scope.$apply(function () {
+        $scope.buffer += msg;
+      });
     });
     netConsole.on('error', function (err) {
       alerts.add('danger', 'Error with NetConsole: ' + err);
