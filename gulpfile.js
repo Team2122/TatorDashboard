@@ -26,7 +26,7 @@ var files = {
 
 var nw = new NwBuilder({
   files: files.build,
-  platforms: ['win', 'osx', 'linux32', 'linux64'],
+  platforms: ['win'],
   appName: 'TatorDashboard',
   appVersion: pkg.version,
   buildDir: 'nwbuild',
