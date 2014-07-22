@@ -11,6 +11,7 @@
         <div class="navbar-collapse collapse" collapse="isCollapsed">
             <ul class="nav navbar-nav navbar-right">
                 <li ng-repeat="link in links" ng-class="{'active': isActive(link)}"><a ng-href="#{{link.address}}">{{link.name}}</a></li>
+                <li><a href="javascript:require('nw.gui').Window.get().showDevTools();">Dev Tools</a></li>
             </ul>
         </div>
     </div>
