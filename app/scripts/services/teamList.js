@@ -54,11 +54,7 @@ angular.module('TatorDashboard')
               return deferred.reject(err);
             }
             var age = Date.now() - stats.ctime;
-            if (age > 1000 * 60 * 60 * 24 * 180) { // ~ 6 months
-              teamList.clearCache().then(function () {
-                teamList.download().then(deferred.resolve, deferred.reject);
-              }, deferred.reject);
-            } else {
+            function useCache() {
               fs.readFile(TEAM_LIST_CACHE_FILENAME, function (err, data) {
                 if (err) {
                   return deferred.reject(err);
@@ -66,11 +62,37 @@ angular.module('TatorDashboard')
                 var json;
                 try {
                   json = JSON.parse(data);
+                  // Fix the data, their API doesn't work too well...
+                  for(var i in json) {
+                    if(json[i].name == null) { // Some of them have null names...
+                      json.splice(i, 1);
+                      i--;
+                      continue;
+                    }
+                    // The numbers are actually strings
+                    json[i].id = parseInt(json[i].id, 10);
+                    json[i].number = parseInt(json[i].number, 10);
+                    // Don't ask me why there is a \t at the beggining of some of their names...IDK
+                    json[i].name = json[i].name.trim();
+                  }
                 } catch (e) {
                   return deferred.reject(e);
                 }
                 return deferred.resolve(json);
               });
+            }
+            if (age > 1000 * 60 * 60 * 24 * 30) { // ~ 1 months
+              require('dns').resolve('www.google.com', function(err) { // Check if we have internet
+                if (err) {
+                  useCache();
+                } else {
+                  teamList.clearCache().then(function () {
+                    teamList.download().then(deferred.resolve, deferred.reject);
+                  }, deferred.reject);
+                }
+              });
+            } else {
+              useCache();
             }
           });
         } else {

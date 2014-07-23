@@ -1,0 +1,8 @@
+<h1 class="page-header">Team List</h1>
+<h2 ng-hide="!!teams">Loading...</h1>
+<table ng-table="tableParams" class="table" show-filter="true">
+  <tr ng-repeat="team in $data">
+    <td data-title="'Number'" sortable="'number'" filter="{'number': 'text'}" style="width: 100px;">{{team.number}}</td>
+    <td data-title="'Name'" sortable="'name'" filter="{'name': 'text'}">{{team.name == null ? "(null)" : team.name}}</td>
+  </tr>
+</table>
