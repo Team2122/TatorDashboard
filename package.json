@@ -25,7 +25,7 @@
   },
   "window": {
     "title": "TatorDashboard",
-    "toolbar": true,
+    "toolbar": false,
     "min_width": 400,
     "min_height": 200
   }
