@@ -3,9 +3,9 @@
 var format = require('util').format;
 
 angular.module('TatorDashboard')
-  .controller('NetConsoleCtrl', function ($scope, netConsole, alerts, robotIp) {
+  .controller('NetConsoleCtrl', function ($scope, netConsole, netConsoleBuffer, alerts, robotIp) {
     $scope.robotIp = robotIp();
-    $scope.buffer = '';
+    $scope.buffer = angular.copy(netConsoleBuffer.buffer);
     $scope.message = '';
     $scope.highlight = true;
 
