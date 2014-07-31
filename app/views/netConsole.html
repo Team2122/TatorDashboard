@@ -1,6 +1,11 @@
-<h1 class="page-header">NetConsole <small>Robot Ip Address: {{robotIp}}</small></h1>
+<h1 class="page-header">NetConsole <small>Robot Ip Address: {{robotIp}}</small>
+<button type="button" class="btn btn-default" ng-model="highlight" btn-checkbox
+  btn-checkbox-true btn-checkbox-true="1" btn-checkbox-false="0">
+    Highlighting
+</button>
+</h1>
 <div class="netconsole">
-    <pre ng-bind="buffer"></pre>
+    <pre ng-bind-html="buffer | logHighlight | trust" ng-class="{'console-highlight': highlight}"></pre>
     <form class="form form-horizontal">
         <div class="input-group col-xs-12">
             <label for="messageInput" class="sr-only">Message</label>

@@ -7,6 +7,7 @@ angular.module('TatorDashboard')
     var EventEmitter = require('events').EventEmitter;
     var NETCONSOLE_RECEIVE_PORT = 6666;
     var NETCONSOLE_SEND_PORT = 6668;
+    var lineBuf = '';
 
     var listener = dgram.createSocket('udp4');
     var sender = dgram.createSocket('udp4');
@@ -19,8 +20,14 @@ angular.module('TatorDashboard')
     listener.on('error', onError);
     sender.on('error', onError);
 
-    listener.on('message', function (msg) {
-      netConsole.emit('message', msg.toString());
+    listener.on('message', function (data) {
+      lineBuf += data.toString().replace('\r', '');
+      var idx;
+      while ((idx = lineBuf.indexOf('\n')) >= 0) {
+        var msg = lineBuf.slice(0, idx);
+        lineBuf = lineBuf.slice(idx + 1);
+        netConsole.emit('message', msg);
+      }
     });
 
     netConsole.send = function (cmd) {

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('TatorDashboard', ['ngRoute', 'ngAnimate', 'ui.bootstrap'])
+angular.module('TatorDashboard', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngSanitize'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
