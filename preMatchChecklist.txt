@@ -1,0 +1,14 @@
+New battery
+Bumper color
+BLF blink is good
+Drive train working
+Pneumatics test
+Pneumatics valve closed
+Flag
+Alliance form
+Confirm start & play positions on field
+On field
+Ball loaded properly, if needed
+Power on
+Robot positioned
+Flag handed to refs
