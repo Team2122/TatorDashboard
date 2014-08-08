@@ -4,7 +4,7 @@ angular.module('TatorDashboard')
   .factory('teamList', function ($q, $http) {
     var fs = require('fs');
     var path = require('path');
-    var TEAM_LIST_CACHE_FILENAME = path.join(process.env.PWD, '.team_list_cache');
+    var TEAM_LIST_CACHE_FILENAME = path.join(process.env.PWD || path.dirname(process.execPath), '.team_list_cache');
     var TEAM_LIST_URL = 'http://www.thefirstalliance.org/api/api.json.php?action=list-teams';
 
     var teamList = {};
