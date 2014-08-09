@@ -4,15 +4,16 @@ angular.module('TatorDashboard')
   .factory('settings', function ($q) {
     var path = require('path');
     var fs = require('fs');
+    var EventEmitter = require('events').EventEmitter;
     var SETTINGS_FILE_NAME = path.join(process.env.PWD || path.dirname(process.execPath), '.settings.json');
 
-    var settings = {};
+    var settings = new EventEmitter();
 
     settings.settings = {};
 
     settings.defaults = function (defaults) {
       Object.keys(defaults).forEach(function (key) {
-        if (!settings.settings[key]) {
+        if (settings.settings[key] === null || settings.settings[key] === undefined) {
           settings.settings[key] = defaults[key];
         }
       });
@@ -31,6 +32,7 @@ angular.module('TatorDashboard')
           return deferred.reject(e);
         }
         settings.settings = json;
+        settings.emit('load');
         return deferred.resolve(json);
       });
       return deferred.promise;
@@ -43,6 +45,7 @@ angular.module('TatorDashboard')
         if (err) {
           return deferred.reject(err);
         }
+        settings.emit('save');
         return deferred.resolve();
       });
       return deferred.promise;
