@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('TatorDashboard', ['ngRoute', 'ngAnimate', 'ui.bootstrap'])
+angular.module('TatorDashboard', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngTable'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -14,6 +14,10 @@ angular.module('TatorDashboard', ['ngRoute', 'ngAnimate', 'ui.bootstrap'])
       .when('/netConsole', {
         templateUrl: 'views/netConsole.html',
         controller: 'NetConsoleCtrl'
+      })
+      .when('/teamList', {
+        templateUrl: 'views/teamList.html',
+        controller: 'TeamListCtrl'
       })
       .otherwise({
         redirectTo: '/'
