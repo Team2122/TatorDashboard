@@ -21,6 +21,11 @@ angular.module('TatorDashboard')
       });
     });
 
+    $('body')[0].style.overflow='hidden';
+    $scope.$on('$destroy', function() {
+      $('body')[0].style.overflow='auto';
+    });
+
     netConsole.on('error', function (err) {
       alerts.add('danger', 'Error with NetConsole: ' + err);
     });
