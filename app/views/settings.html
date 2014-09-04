@@ -14,6 +14,13 @@
                    ng-pattern="/^\d{1,4}$/" required>
         </div>
     </div>
+    <div class="form-group">
+        <label for="inputDebug" class="col-sm-2 control-label"></label>
+        <div class="cols-sm-10 col-sm-push-2">
+            <button id="inputDebug" class="btn btn-default" btn-checkbox ng-class="{'active': settings.debug}" name="debug"
+                    ng-model="settings.debug">Debug Mode</button>
+        </div>
+    </div>
 </form>
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">

@@ -6,12 +6,12 @@
 
 // Livereload
 angular.module('TatorDashboard')
-  .run(function ($route) {
+  .run(function ($state) {
     var net = require('net');
     var client = net.connect(9292);
     client.on('data', function (data) {
       if (data.toString() === 'reload') {
-        $route.reload(true);
+        $state.reload(true);
       }
     });
     client.on('error', function () {

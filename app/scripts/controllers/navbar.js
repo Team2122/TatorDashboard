@@ -1,23 +1,23 @@
 'use strict';
 
 angular.module('TatorDashboard')
-  .controller('NavbarCtrl', function ($scope, $location) {
+  .controller('NavbarCtrl', function ($scope, $rootScope, $location) {
     $scope.isCollapsed = true;
     $scope.links = [
       {
         name: 'Dashboard',
-        address: '/dashboard'
+        sref: 'dashboard'
       },
       {
         name: 'NetConsole',
-        address: '/netConsole'
+        sref: 'netConsole'
       },
       {
         name: 'Settings',
-        address: '/settings'
+        sref: 'settings'
       }
     ];
-    $scope.isActive = function (link) {
-      return $location.path() === link.address;
-    };
+    $rootScope.$on('closeNavbar', function () {
+      $scope.isCollapsed = true;
+    });
   });

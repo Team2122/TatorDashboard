@@ -74,7 +74,7 @@ gulp.task('install', function () {
     .pipe(install());
 });
 
-var reload;
+var reload, proc;
 
 gulp.task('watch', function () {
   gulp.watch(files.less, ['less', 'inject']);
@@ -87,11 +87,14 @@ gulp.task('run', ['install', 'inject', 'less', 'watch'], function (done) {
     reload = socket;
   }).listen(9292);
 
-  var proc = child.spawn('nw', ['./']);
+  proc = child.spawn('nw', ['./']);
   proc.on('error', function (err) {
     done("Error running webkit app. Do you have the 'nw' executable in your PATH?\n" + err);
   });
-  proc.on('exit', done);
+  proc.on('exit', function () {
+    reload.end();
+    done();
+  });
   proc.stderr.pipe(process.stderr);
 });
 
@@ -101,4 +104,4 @@ gulp.task('reload', function () {
   }
 });
 
-gulp.task('default', ['install', 'jshint', 'inject', 'build']);
+gulp.task('default', ['install', 'jshint', 'inject']);

@@ -9,12 +9,19 @@ angular.module('TatorDashboard')
     };
 
     $scope.addAlert = function (type, message, timeout) {
-      var alert = {type: type, message: message};
-      $scope.alerts.push(alert);
-      if (timeout) {
-        $timeout(function () {
-          $scope.closeAlert($scope.alerts.indexOf(alert));
-        }, angular.isNumber(timeout) ? timeout : 5000);
+      var add = function() {
+        var alert = {type: type, message: message};
+        $scope.alerts.push(alert);
+        if (timeout) {
+          $timeout(function () {
+            $scope.closeAlert($scope.alerts.indexOf(alert));
+          }, angular.isNumber(timeout) ? timeout : 5000);
+        }
+      };
+      if (!$scope.$$phase) {
+        $scope.$apply(add);
+      } else {
+        add();
       }
     };
 

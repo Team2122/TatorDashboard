@@ -7,10 +7,11 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">TatorDashboard</a>
+            <ng-include src="'views/connectBtn.html'"></ng-include>
         </div>
         <div class="navbar-collapse collapse" collapse="isCollapsed">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-repeat="link in links" ng-class="{'active': isActive(link)}"><a ng-href="#{{link.address}}">{{link.name}}</a></li>
+                <li ng-repeat="link in links" ui-sref-active="active"><a ui-sref="{{link.sref}}">{{link.name}}</a></li>
             </ul>
         </div>
     </div>

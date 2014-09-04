@@ -6,11 +6,12 @@
 </h1>
 <div class="netconsole">
     <pre ng-bind-html="buffer | logHighlight | trust" ng-class="{'console-highlight': highlight}"></pre>
-    <form class="form form-horizontal">
+</div>
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <form class="form navbar-form row">
         <div class="input-group col-xs-12">
-            <label for="messageInput" class="sr-only">Message</label>
-            <input type="text" id="messageInput" class="form-control col-xs-12" ng-model="message" placeholder="Message">
-            <span class="input-group-btn">
+            <input type="text" class="form-control" ng-model="message" placeholder="Message">
+            <span class="input-group-btn min-width">
                 <button class="btn btn-primary" ng-click="send()">Send</button>
             </span>
         </div>
