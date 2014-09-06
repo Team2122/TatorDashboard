@@ -8,7 +8,7 @@
 </button>
 </h1>
 <div class="netconsole">
-    <pre ng-bind-html="buffer | logHighlight | trust" ng-class="{'console-highlight': highlight}"></pre>
+    <pre ng-bind-html="buffer | maxLines:100 | logHighlight | trust" ng-class="{'console-highlight': highlight}"></pre>
 </div>
 <div class="navbar navbar-default navbar-fixed-bottom">
     <form class="form navbar-form button-bar row">
