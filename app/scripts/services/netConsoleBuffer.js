@@ -6,7 +6,7 @@ angular.module('TatorDashboard')
     netConsoleBuffer.buffer = '';
     netConsoleBuffer.start = function() {
       netConsole.on('message', function (message) {
-        netConsoleBuffer.buffer += message;
+        netConsoleBuffer.buffer += message + '\n';
       });
     };
     return netConsoleBuffer;
