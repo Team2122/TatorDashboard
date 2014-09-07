@@ -2,21 +2,18 @@
 
 angular.module('TatorDashboard')
   .run(function (settings, alerts) {
-    settings.load()
-      .then(function () {
-        settings.defaults({
-          teamNumber: '2122',
-          lightNavbar: false
+    settings.defaults({
+      teamNumber: '2122'
+    });
+    settings.load().catch(function (err) {
+      if (err.code === 'ENOENT') { // Doesn't exist, create it
+        settings.save().catch(function (err) {
+          alerts.add('danger', 'Failed to write to settings file: ' + err);
         });
-      }, function (err) {
-        if (err.code === 'ENOENT') { // Doesn't exist, create it
-          settings.save().catch(function (err) {
-            alerts.add('danger', 'Failed to write to settings file: ' + err);
-          });
-        } else {
-          alerts.add('danger', 'Failed to load settings: ' + JSON.stringify(err));
-        }
-      });
+      } else {
+        alerts.add('danger', 'Failed to load settings: ' + JSON.stringify(err));
+      }
+    });
   })
   .controller('SettingsCtrl', function ($scope, teamList, settings, alerts) {
     $scope.settings = angular.copy(settings.settings);
