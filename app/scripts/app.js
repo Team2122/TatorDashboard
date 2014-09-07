@@ -1,21 +1,33 @@
 'use strict';
 
-angular.module('TatorDashboard', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngSanitize'])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+angular.module('TatorDashboard', ['ui.router', 'ui.bootstrap', 'ui.sortable', 'ngAnimate', 'ngSanitize'])
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/dashboard');
+
+    $stateProvider
+      .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardCtrl'
       })
-      .when('/settings', {
+      .state('dashboard.configs', {
+        url: '/configs',
+        templateUrl: 'views/configs.html',
+        controller: 'ConfigsCtrl'
+      })
+      .state('dashboard.joysticks', {
+        url: '/joysticks',
+        templateUrl: 'views/joysticks.html',
+        controller: 'JoysticksCtrl'
+      })
+      .state('settings', {
+        url: '/settings',
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl'
       })
-      .when('/netConsole', {
+      .state('netConsole', {
+        url: '/netConsole',
         templateUrl: 'views/netConsole.html',
         controller: 'NetConsoleCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
       });
   });

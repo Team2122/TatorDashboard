@@ -6,12 +6,26 @@
 
 // Livereload
 angular.module('TatorDashboard')
-  .run(function ($route) {
+  .run(function ($state, alerts) {
+    process.on('uncaughtException', function (e) {
+      try {
+        var message;
+        if (e instanceof Error && Object.prototype.hasOwnProperty.call(e, 'stack')) {
+          message = e.stack;
+        } else {
+          message = e + '';
+        }
+        alerts.add('danger', 'Uncaught Node.js Exception:' + message);
+        console.error(message);
+      } catch (what) {
+        global.console.log("Well we're screwed. The exception handling routine threw an error. FML: " + what);
+      }
+    });
     var net = require('net');
     var client = net.connect(9292);
     client.on('data', function (data) {
       if (data.toString() === 'reload') {
-        $route.reload(true);
+        $state.reload(true);
       }
     });
     client.on('error', function () {

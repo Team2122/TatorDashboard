@@ -3,8 +3,12 @@
 var format = require('util').format;
 
 angular.module('TatorDashboard')
-  .controller('NetConsoleCtrl', function ($scope, netConsole, netConsoleBuffer, alerts, robotIp) {
-    $scope.robotIp = robotIp();
+  .controller('NetConsoleCtrl', function ($scope, netConsole, netConsoleBuffer, alerts, settings, robotIp) {
+    $scope.robotIp = '';
+    settings.whenLoaded(function () {
+      $scope.robotIp = robotIp();
+    });
+
     $scope.buffer = angular.copy(netConsoleBuffer.buffer);
     $scope.message = '';
     $scope.highlight = true;

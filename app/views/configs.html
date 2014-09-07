@@ -1,0 +1,50 @@
+<h2>Configs</h2>
+<div class="bar-bottom-body">
+    <div class="well">
+        <json-view ng-hide="config === null" ng-model="config" collapsed="false" filter="{{filter}}"></json-view>
+        <p ng-show="config === null">The config is empty. Load it from either the robot or the workspace</p>
+    </div>
+</div>
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <form class="form navbar-form">
+        <span class="dropdown">
+            <button class="btn btn-default dropdown-toggle" ng-class="{'disabled': disabled}">
+                <i class="fa fa-exchange"></i> Transfer <i class="fa fa-caret-up"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li ng-class="disabledClass">
+                    <a ng-click="transferToRobot()">Workspace <i class="fa fa-arrow-right"></i> Robot</a>
+                </li>
+                <li ng-class="disabledClass">
+                    <a ng-click="transferToWorkspace()">Robot <i class="fa fa-arrow-right"></i> Workspace</a>
+                </li>
+            </ul>
+        </span>
+        <span class="dropdown">
+            <button class="btn btn-primary dropdown-toggle">
+                <i class="fa fa-download"></i> Load <i class="fa fa-caret-up"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li ng-class="disabledClass"><a ng-click="loadRobot()"><i class="fa fa-cogs"></i> From Robot</a>
+                </li>
+                <li><a ng-click="loadWorkspace()"><i class="fa fa-laptop"></i> From Workspace</a></li>
+            </ul>
+        </span>
+        <span class="dropdown btn-group">
+            <button class="btn btn-success" ng-class="{'disabled': config === null}" ng-click="saveBoth()">
+                <i class="fa fa-upload"></i> Save
+            </button>
+            <button class="btn btn-success dropdown-toggle" ng-class="{'disabled': config === null}"><i
+                    class="fa fa-caret-up"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li ng-class="disabledClass"><a ng-click="saveRobot()"><i class="fa fa-cogs"></i> To Robot</a></li>
+                <li><a ng-click="saveWorkspace()"><i class="fa fa-laptop"></i> To Workspace</a></li>
+                <li ng-class="disabledClass"><a ng-click="saveBoth()"><i class="fa fa-exchange"></i> To Both</a>
+                </li>
+            </ul>
+        </span>
+        <input type="text" class="form-control" ng-model="filter" placeholder="Filter"/>
+    </form>
+</div>
+

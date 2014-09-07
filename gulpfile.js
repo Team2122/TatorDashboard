@@ -21,7 +21,7 @@ var files = {
   css: ['app/styles/**/*.css'],
   index: 'app/index.html',
   install: ['package.json', 'bower.json'],
-  build: ['package.json', 'app/index.html', 'app/views/**/*', 'app/components/**/*', 'app/scripts/**/*', 'app/styles/**/*.css']
+  build: ['package.json', 'app/index.html', 'app/views/**/*', 'app/components/**/*', 'app/scripts/**/*', 'app/styles/**/*.css', 'app/images/**/*']
 };
 
 var nw = new NwBuilder({
@@ -31,7 +31,7 @@ var nw = new NwBuilder({
   appVersion: pkg.version,
   buildDir: 'nwbuild',
   cacheDir: '.nwcache',
-  version: 'v0.9.2'
+  version: 'latest'
 });
 
 gulp.task('jshint', function () {

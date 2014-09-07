@@ -7,14 +7,15 @@
   "license": "MIT",
   "author": "Alex Mikhalev <alexmikhalevalex@gmail.com>",
   "dependencies": {
-    "angular": "~1.2.18",
-    "bootstrap": "~3.2.0",
-    "jquery": "~2.1.1",
-    "angular-bootstrap": "~0.11.0",
-    "angular-route": "~1.2.18",
-    "font-awesome": "~4.1.0",
-    "angular-animate": "~1.2.19",
-    "angular-sanitize": "~1.2.21"
+    "angular": "latest",
+    "bootstrap": "latest",
+    "jquery": "latest",
+    "angular-bootstrap": "latest",
+    "font-awesome": "latest",
+    "angular-animate": "latest",
+    "angular-sanitize": "latest",
+    "angular-ui-sortable": "latest",
+    "angular-ui-router": "latest"
   },
   "ignore": [
     "**/.*",

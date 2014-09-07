@@ -1,9 +1,16 @@
 'use strict';
 
+var path = require('path');
+var fs = require('fs');
+
 angular.module('TatorDashboard')
   .run(function (settings, alerts) {
     settings.defaults({
-      teamNumber: '2122'
+      teamNumber: '2122',
+      workspace: '/WindRiver/workspace',
+      project: 'Potatopult',
+      configType: 'Competition',
+      debugMode: false
     });
     settings.load().catch(function (err) {
       if (err.code === 'ENOENT') { // Doesn't exist, create it
@@ -15,8 +22,17 @@ angular.module('TatorDashboard')
       }
     });
   })
-  .controller('SettingsCtrl', function ($scope, teamList, settings, alerts) {
-    $scope.settings = angular.copy(settings.settings);
+  .controller('SettingsCtrl', function ($scope, teamList, settings, alerts, nwDialogs) {
+    function updateSettings() {
+      $scope.settings = angular.copy(settings.settings);
+    }
+
+    updateSettings();
+    settings.on('load', function () {
+      $scope.$apply(function () {
+        updateSettings();
+      });
+    });
 
     // Fetch team list
     teamList.get()
@@ -29,6 +45,56 @@ angular.module('TatorDashboard')
     $scope.formatTeam = function ($item) {
       $scope.settings.teamNumber = $item.number;
     };
+
+    $scope.changeWorkspace = function () {
+      nwDialogs.directory($scope.settings.workspace, function (dir) {
+        $scope.$apply(function () {
+          $scope.settings.workspace = dir;
+        });
+      });
+    };
+
+    $scope.projects = [];
+    $scope.updateProjects = function () {
+      var workspace = $scope.settings.workspace;
+      fs.readdir(workspace, function (err, files) {
+        if (err) {
+          $scope.$apply(function () {
+            $scope.projects = [];
+            $scope.settings.project = '';
+          });
+          return alerts.add('warning', 'Workspace path invalid');
+        }
+        $scope.$apply(function () {
+          $scope.projects = files.filter(function (file) {
+            return file !== '.metadata';
+          });
+        });
+      });
+    };
+    $scope.types = [];
+    $scope.updateTypes = function () {
+      var workspace = $scope.settings.workspace;
+      var project = $scope.settings.project;
+      fs.readdir(path.join(workspace, project, 'config'), function (err, files) {
+        if (err) {
+          $scope.$apply(function () {
+            $scope.types = [];
+            $scope.settings.type = '';
+          });
+          return alerts.add('warning', 'Project ' + project + ' does not exist or have a config folder');
+        }
+        $scope.$apply(function () {
+          $scope.types = files;
+        });
+      });
+    };
+    settings.whenLoaded(function () {
+      $scope.updateTypes();
+      $scope.updateProjects();
+      $scope.$watch('settings.workspace', $scope.updateProjects);
+      $scope.$watch('settings.workspace + settings.project', $scope.updateTypes);
+    });
 
     $scope.save = function () {
       if ($scope.settingsForm.$invalid) {

@@ -7,8 +7,8 @@
 @gray-darkest: #080808;
 
 .netconsole {
-  height: 100%;
-  padding-bottom: 55px;
+  height: calc(~"100vh - 200px");
+  width: 100%;
 
   pre {
     background: @gray-darkest;
@@ -16,7 +16,6 @@
 
     overflow-y: scroll;
     height: 100%;
-
   }
 
   pre.console-highlight {
@@ -40,4 +39,8 @@
 
 .netconsole input {
   font-family: @font-family-monospace;
+}
+
+.min-width {
+  width: 1% !important;
 }

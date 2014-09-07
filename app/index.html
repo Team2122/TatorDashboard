@@ -10,11 +10,14 @@
 
     <!-- CSS Files -->
     <!-- Libraries -->
-    <link href="components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
+    <link href="components/JSONedit/css/styles.css" rel="stylesheet"/>
+    <link href="components/ng-sortable/dist/ng-sortable.min.css"/>
     <!-- Custom Stylesheets -->
     <!-- inject:css -->
     <link rel="stylesheet" href="styles/alerts.css">
     <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/jsonView.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/netConsole.css">
     <!-- endinject -->
@@ -24,10 +27,10 @@
 
 <ng-include src="'views/navbar.html'"></ng-include>
 
-<div class="container-fluid">
+<div class="container-fluid body-container">
     <ng-include src="'views/alerts.html'"></ng-include>
     <!-- Main page content gets inserted here -->
-    <div ng-view></div>
+    <div ui-view></div>
 </div>
 
 
@@ -35,25 +38,42 @@
 ======================-->
 <!-- Libraries -->
 <script src="components/jquery/jquery.js"></script>
+<script src="components/jquery-ui/ui/jquery-ui.js"></script>
+<script src="components/jquery-ui/ui/jquery.ui.widget.js"></script>
+<script src="components/jquery-ui/ui/jquery.ui.mouse.js"></script>
+<script src="components/jquery-ui/ui/jquery.ui.sortable.js"></script>
 <script src="components/angular/angular.js"></script>
-<script src="components/angular-route/angular-route.js"></script>
+<script src="components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="components/angular-animate/angular-animate.js"></script>
 <script src="components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="components/angular-sanitize/angular-sanitize.js"></script>
+<script src="components/ng-sortable/dist/ng-sortable.js"></script>
+<script src="components/angular-ui-sortable/sortable.js"></script>
+<script src="components/JSONedit/js/JSONEdit.js"></script>
 <!-- App Code -->
 <!-- inject:js -->
 <script src="scripts/app.js"></script>
 <script src="scripts/dev.js"></script>
 <script src="scripts/controllers/alerts.js"></script>
-<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/configs.js"></script>
+<script src="scripts/controllers/connectBtn.js"></script>
+<script src="scripts/controllers/dashboard.js"></script>
+<script src="scripts/controllers/joysticks.js"></script>
 <script src="scripts/controllers/navbar.js"></script>
 <script src="scripts/controllers/netConsole.js"></script>
 <script src="scripts/controllers/settings.js"></script>
 <script src="scripts/controllers/sidebar.js"></script>
+<script src="scripts/directives/directory.js"></script>
+<script src="scripts/directives/jsonView.js"></script>
 <script src="scripts/directives/showErrors.js"></script>
+<script src="scripts/directives/sidebar.js"></script>
 <script src="scripts/services/alerts.js"></script>
+<script src="scripts/services/client.js"></script>
+<script src="scripts/services/config.js"></script>
 <script src="scripts/services/netConsole.js"></script>
 <script src="scripts/services/netConsoleBuffer.js"></script>
+<script src="scripts/services/nwDialogs.js"></script>
+<script src="scripts/services/recursionHelper.js"></script>
 <script src="scripts/services/robotIp.js"></script>
 <script src="scripts/services/settings.js"></script>
 <script src="scripts/services/teamList.js"></script>

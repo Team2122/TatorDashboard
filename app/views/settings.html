@@ -1,20 +1,59 @@
-<h1 class="page-header">Settings</h1>
-<form class="form-horizontal" name="settingsForm">
-    <h4>General</h4>
+<div class="bar-bottom-body">
+    <h1 class="page-header">Settings</h1>
 
-    <div class="form-group" show-errors>
-        <label for="inputTeamNumber" class="col-sm-2 control-label">Team Number:</label>
+    <form class="form-horizontal" name="settingsForm">
+        <h4>General</h4>
 
-        <div class="col-sm-10">
-            <input id="inputTeamNumber" class="form-control" type="text" name="teamNumber"
-                   placeholder="The team number of your robot"
-                   ng-model="settings.teamNumber"
-                   typeahead="team.number + ', ' + team.name for team in teamsList | filter:$viewValue | limitTo:8"
-                   typeahead-on-select="formatTeam($item)"
-                   ng-pattern="/^\d{1,4}$/" required>
+        <div class="form-group" show-errors>
+            <label for="inputTeamNumber" class="col-sm-2 control-label">Team Number:</label>
+
+            <div class="col-sm-10">
+                <input id="inputTeamNumber" class="form-control" type="text" name="teamNumber"
+                       placeholder="The team number of your robot"
+                       ng-model="settings.teamNumber"
+                       typeahead="team.number + ', ' + team.name for team in teamsList | filter:$viewValue | limitTo:8"
+                       typeahead-on-select="formatTeam($item)"
+                       ng-pattern="/^\d{1,4}$/" required>
+            </div>
         </div>
-    </div>
-</form>
+        <div class="form-group">
+            <label for="inputWorkspace" class="col-sm-2 control-label">Workspace Path:</label>
+
+            <div class="col-sm-10">
+                <!--<directory id="inputWorkspace" ng-model="settings.workspace"></directory>-->
+                <!--<span>{{settings.workspace}}</span>-->
+                <!--<button class="btn btn-default" ng-click="changeWorkspace()">Change</button>-->
+                <directory ng-model="settings.workspace"></directory>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputProject" class="col-sm-2 control-label">Project:</label>
+
+            <div class="col-sm-10">
+                <select id="inputProject" class="form-control" ng-options="project for project in projects"
+                        ng-model="settings.project"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputConfigType" class="col-sm-2 control-label">Config Type:</label>
+
+            <div class="col-sm-10">
+                <select id="inputConfigType" class="form-control" ng-options="type for type in types"
+                        ng-model="settings.configType"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputDebug" class="col-sm-2 control-label"></label>
+
+            <div class="cols-sm-10 col-sm-push-2">
+                <button id="inputDebug" class="btn btn-default" btn-checkbox ng-class="{'active': settings.debug}"
+                        name="debug" ng-model="settings.debug">
+                    Debug Mode
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <button type="button" class="btn btn-primary navbar-btn" ng-click="save()">Save

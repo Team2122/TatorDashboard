@@ -1,0 +1,66 @@
+/**
+ * Styles for jsonview
+ */
+@import "../components/bootstrap/less/variables";
+
+.jsonview {
+  .toggleIcon {
+    width: 14px;
+    margin-left: 25px;
+  }
+  .items {
+    padding-left: 15px;
+    margin-left: 10px;
+    padding-top: 4px;
+    min-height: 50px;
+
+    border-left: 1px solid #bbbbbb;
+    border-top: 1px solid #bbbbbb;
+    border-top-left-radius: 10px;
+
+    .ng-enter,
+    .ng-leave {
+      transition: .25s ease all;
+    }
+
+    .ng-enter.ng-enter-active,
+    .ng-leave {
+      transform: scaleY(1);
+    }
+
+    .ng-leave.ng-leave-active,
+    .ng-enter {
+      transform: scaleY(0);
+    }
+  }
+  .item {
+    padding-bottom: 2px;
+    padding-top: 2px;
+  }
+  .index {
+    display: inline-block;
+    width: 75px;
+  }
+  .key {
+    display: inline-block;
+    min-width: 75px;
+  }
+  .type {
+    display: inline-block;
+    width: 115px;
+  }
+  .value {
+    display: inline-block;
+    width: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .inline {
+    display: inline-block;
+  }
+  .null {
+    font-family: @font-family-monospace;
+  }
+  margin-bottom: 0;
+}
+

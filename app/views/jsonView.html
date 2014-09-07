@@ -1,0 +1,58 @@
+<select class="form-control type" ng-model="type" ng-change="updateType()" ng-options="type for type in types"></select>
+<div ng-switch on="type" class="jsonview ng-class: isInline">
+    <div ng-switch-when="Object">
+        <i class="fa toggleIcon ng-class: toggleIcon" ng-click="toggleCollapse()"></i>
+        <i class="fa fa-plus add" ng-click="appendItem()"></i>
+
+        <div ng-if="!collapsed" class="items object" ui-sortable="sortable" ng-model="value">
+            <div class="item" ng-show="jsonFilter($index)" ng-repeat="item in value track by item.key">
+                <span class="dropdown">
+                    <i class="fa fa-bars menu dropdown-toggle"></i>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="remove($index)"><i class="fa fa-trash"></i> Remove</a></li>
+                    </ul>
+                </span>
+                <i class="fa fa-arrows handle"></i>
+                <b class="key">{{item.key}}:</b>
+                <json-view ng-model="item.value" collapsed="true" filter="{{childFilter}}"></json-view>
+            </div>
+            <div class="adding" ng-show="adding">
+                <form class="form-inline">
+                    <input type="text" class="form-control value" placeholder="Key" ng-model="$parent.newItem.key">
+                    <json-view ng-model="$parent.newItem.value" collapsed="false"></json-view>
+                    <button class="btn btn-primary" ng-click="addKV()">Add</button>
+                    <button class="btn btn-danger" ng-click="cancelAdd()">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div ng-switch-when="Array">
+        <i class="fa toggleIcon ng-class: toggleIcon" ng-click="toggleCollapse()"></i>
+        <i class="fa fa-plus add" ng-click="appendItem()"></i>
+
+        <div ng-if="!collapsed" class="items array" ui-sortable="sortable" ng-model="value">
+            <div class="item" ng-repeat="item in value track by $index">
+                <span class="dropdown">
+                    <i class="fa fa-bars menu dropdown-toggle"></i>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="insertBefore($index)"><i class="fa fa-arrow-up"></i> Insert Before</a></li>
+                        <li><a ng-click="insertAfter($index)"><i class="fa fa-arrow-down"></i> Insert After</a></li>
+                        <li class="divider"></li>
+                        <li><a ng-click="remove($index)"><i class="fa fa-trash"></i> Delete</a></li>
+                    </ul>
+                </span>
+                <i class="fa fa-arrows handle"></i>
+                <b class="key">[{{$index}}]:</b>
+                <json-view ng-model="$parent.value[$index]" collapsed="true" filter="{{filter}}"></json-view>
+            </div>
+        </div>
+    </div>
+    <span ng-switch-when="String"><input type="text" class="form-control value" ng-model="$parent.value"></span>
+    <span ng-switch-when="Number"><input type="number" class="form-control value" ng-model="$parent.value"/></span>
+    <span ng-switch-when="Boolean">
+        <button class="btn btn-default value" ng-class="{'active': val}" ng-model="$parent.value" btn-checkbox>
+            {{value}}
+        </button>
+    </span>
+    <span ng-switch-when="Null" class="value null">Null</span>
+</div>

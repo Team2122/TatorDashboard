@@ -7,15 +7,16 @@
   "license": "MIT",
   "author": "Alex Mikhalev <alexmikhalevalex@gmail.com>",
   "dependencies": {
-    "bower": "^1.3.5",
-    "gulp": "^3.8.5",
-    "gulp-inject": "^0.4.1",
-    "gulp-install": "^0.1.8",
-    "gulp-jshint": "^1.6.3",
-    "gulp-less": "^1.2.4",
-    "gulp-rimraf": "^0.1.0",
-    "gulp-util": "^2.2.19",
-    "jshint-stylish": "^0.2.0",
+    "bower": "latest",
+    "gulp": "latest",
+    "gulp-inject": "latest",
+    "gulp-install": "latest",
+    "gulp-jshint": "latest",
+    "gulp-less": "latest",
+    "gulp-rimraf": "latest",
+    "gulp-util": "latest",
+    "jshint-stylish": "latest",
+    "lodash": "latest",
     "node-webkit-builder": "latest"
   },
   "scripts": {
@@ -26,7 +27,9 @@
   "window": {
     "title": "TatorDashboard",
     "toolbar": true,
-    "min_width": 400,
-    "min_height": 200
+    "min_width": 768,
+    "min_height": 200,
+    "width": 1366,
+    "height": 450
   }
 }

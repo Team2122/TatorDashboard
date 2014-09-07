@@ -1,0 +1,72 @@
+<div class="bar-bottom-body">
+    <h2>Joysticks
+        <small><i class="fa fa-plus" ng-click="add()"></i></small>
+    </h2>
+    <div ng-show="buttons.length > 0" ui-sortable="sortable" ng-model="buttons">
+        <div class="well well-sm" ng-repeat="button in buttons track by $index">
+            <form class="form-inline">
+                <i class="fa fa-trash" ng-click="remove($index)"></i>
+                <i class="fa fa-arrows handle"></i>
+
+                <div class="form-group">
+                    <label>Stick: </label>
+                    <input type="number" class="form-control" min="1" max="4" step="1" required ng-model="button.Stick">
+                </div>
+                <div class="form-group">
+                    <label>Button: </label>
+                    <input type="number" class="form-control" min="1" max="12" step="1" required
+                           ng-model="button.Button">
+                </div>
+                <div class="form-group">
+                    <label>Event: </label>
+                    <select class="form-control" ng-model="button.Event">
+                        <option value="WhenPressed">When Pressed</option>
+                        <option value="WhenReleased">When Released</option>
+                        <option value="WhileHeld">While Held</option>
+                        <option value="CancelWhenPressed">Cancel When Pressed</option>
+                        <option value="ToggleWhenPressed">Toggle When Pressed</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Command: </label>
+                    <input type="text" class="form-control" required ng-model="button.Command">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div ng-hide="buttons.length > 0" class="well">
+        Load a config from the robot or the workspace
+    </div>
+</div>
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <form class="form navbar-form">
+        <span class="dropdown">
+            <button class="btn btn-primary dropdown-toggle">
+                <i class="fa fa-download"></i> Load <i class="fa fa-caret-up"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li ng-class="{'disabled': disabled}">
+                    <a ng-click="loadRobot()"><i class="fa fa-cogs"></i> From Robot</a>
+                </li>
+                <li><a ng-click="loadWorkspace()"><i class="fa fa-laptop"></i> From Workspace</a></li>
+            </ul>
+        </span>
+        <span class="dropdown btn-group">
+            <button class="btn btn-success" ng-class="{'disabled': config === null}" ng-click="saveBoth()">
+                <i class="fa fa-upload"></i> Save
+            </button>
+            <button class="btn btn-success dropdown-toggle" ng-class="{'disabled': config === null}"><i
+                    class="fa fa-caret-up"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li ng-class="{'disabled': disabled}"><a ng-click="saveRobot()"><i class="fa fa-cogs"></i> To Robot</a>
+                </li>
+                <li><a ng-click="saveWorkspace()"><i class="fa fa-laptop"></i> To Workspace</a></li>
+                <li ng-class="{'disabled': disabled}">
+                    <a ng-click="saveBoth()"><i class="fa fa-exchange"></i> To Both</a>
+                </li>
+            </ul>
+        </span>
+    </form>
+</div>
+

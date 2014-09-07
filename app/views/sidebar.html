@@ -1,30 +1,11 @@
-<div class="row row-offcanvas row-offcanvas-left" ng-init="isCollapsed = true" ng-class="{'active': !isCollapsed}">
-    <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
-        <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
-        </ul>
-        <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-            <li><a href="">More navigation</a></li>
-        </ul>
-        <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
+<div class="row" ng-class="{'active': !collapsed}">
+    <div class="sidebar col-sm-3 col-md-2">
+        <ul class="nav nav-sidebar" ng-repeat="nav in links">
+            <li ng-repeat="link in nav" ui-sref-active-eq="active">
+                <a ui-sref="{{link.sref}}"><i class="fa ng-class: link.icon"></i> {{link.name}}</a>
+            </li>
         </ul>
     </div>
-    <div class="col-sm-9 col-md-10 main">
-        <!-- Sidebar toggle button -->
-        <p class="visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" ng-click="isCollapsed = !isCollapsed">
-                <i class="fa" ng-class="{'fa-chevron-right': isCollapsed, 'fa-chevron-left': !isCollapsed}"></i>
-            </button>
-        </p>
+    <div class="main col-sm-9 col-sm-push-3 col-md-10 col-md-push-2" ng-transclude>
     </div>
 </div>

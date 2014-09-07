@@ -3,6 +3,9 @@
 angular.module('TatorDashboard')
   .factory('robotIp', function (settings) {
     return function () {
+      if (settings.settings.debug) {
+        return 'localhost';
+      }
       var teamNumber = settings.settings.teamNumber + '';
       while (teamNumber.length < 4) {
         teamNumber = '0' + teamNumber;
