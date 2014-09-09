@@ -43,8 +43,7 @@ angular.module('TatorDashboard')
       return $sce.trustAsHtml($sanitize(text));
     };
   }).filter('logHighlight', function () {
-    return function (text) {
-      var lines = text.split('\n');
+    return function (lines) {
       var newLines = [];
       var highlights = {
         'console-section': /====/,
@@ -68,5 +67,14 @@ angular.module('TatorDashboard')
         }
       }
       return newLines.join('\n');
+    };
+  }).filter('maxLines', function () {
+    return function (text, num) {
+      var split = text.split('\n');
+      if(split > num) {
+        return split.slice(-100);
+      } else {
+        return split;
+      }
     };
   });
