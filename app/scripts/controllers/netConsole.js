@@ -9,7 +9,29 @@ angular.module('TatorDashboard')
       $scope.robotIp = robotIp();
     });
 
-    $scope.buffer = angular.copy(netConsoleBuffer.buffer);
+    function highlightLine(line) {
+      var highlights = {
+        'console-section': /====/,
+        'console-debug': /\[DEBUG\]/,
+        'console-info': /\[INFO ?\]/,
+        'console-warn': /\[WARN ?\]/,
+        'console-error': /\[ERROR\]/
+      };
+      for (var className in highlights) {
+        if (highlights[className].test(line)) {
+          line = format('<span class="%s">%s</span>', className, line);
+          break;
+        }
+      }
+      return line;
+    }
+
+    var buffer = angular.copy(netConsoleBuffer.buffer);
+    buffer = buffer.split('\n').map(function (line) {
+      return highlightLine(line);
+    }).join('\n');
+
+    $scope.buffer = buffer;
     $scope.message = '';
     $scope.highlight = true;
 
@@ -20,6 +42,7 @@ angular.module('TatorDashboard')
     };
 
     netConsole.on('message', function (msg) {
+      msg = highlightLine(msg);
       $scope.$apply(function () {
         $scope.buffer += msg + '\n';
       });
@@ -38,35 +61,4 @@ angular.module('TatorDashboard')
         });
       }
     });
-  }).filter('trust', function ($sce, $sanitize) {
-    return function (text) {
-      return $sce.trustAsHtml($sanitize(text));
-    };
-  }).filter('logHighlight', function () {
-    return function (text) {
-      var lines = text.split('\n');
-      var newLines = [];
-      var highlights = {
-        'console-section': /====/,
-        'console-debug': /\[DEBUG\]/,
-        'console-info': /\[INFO ?\]/,
-        'console-warn': /\[WARN ?\]/,
-        'console-error': /\[ERROR\]/
-      };
-      for (var lineNumber = 0; lineNumber < lines.length; lineNumber++) {
-        var line = lines[lineNumber];
-        var added = false;
-        for (var className in highlights) {
-          if (highlights[className].test(line)) {
-            newLines.push(format('<span class="%s">%s</span>', className, line));
-            added = true;
-            break;
-          }
-        }
-        if (!added) {
-          newLines.push(line);
-        }
-      }
-      return newLines.join('\n');
-    };
   });
