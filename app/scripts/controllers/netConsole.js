@@ -49,6 +49,9 @@ angular.module('TatorDashboard')
     netConsole.on('message', function (msg) {
       msg = highlightLine(msg);
       $scope.$apply(function () {
+        if (/\[INFO\] *\[\w+\] ==== \w+ Initializing ====/i.test(msg)) {
+          $scope.clear();
+        }
         $scope.buffer += msg + '\n';
       });
     });
