@@ -41,6 +41,11 @@ angular.module('TatorDashboard')
       $scope.message = '';
     };
 
+    $scope.clear = function () {
+      $scope.buffer = '';
+      netConsoleBuffer.buffer = '';
+    };
+
     netConsole.on('message', function (msg) {
       msg = highlightLine(msg);
       $scope.$apply(function () {
