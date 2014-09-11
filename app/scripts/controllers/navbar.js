@@ -1,8 +1,15 @@
 'use strict';
 
 angular.module('TatorDashboard')
-  .controller('NavbarCtrl', function ($scope, $rootScope) {
+  .controller('NavbarCtrl', function ($scope, $location, $rootScope, settings) {
     $scope.isCollapsed = true;
+    function updateTheme () {
+      $scope.$apply(function () {
+        $scope.lightTheme = settings.settings.lightNavbar;
+      });
+    }
+    settings.on('load', updateTheme);
+    settings.on('save', updateTheme);
     $scope.links = [
       {
         name: 'Dashboard',
