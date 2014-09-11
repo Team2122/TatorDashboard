@@ -7,9 +7,9 @@ angular.module('TatorDashboard')
         return 'localhost';
       }
       var teamNumber = settings.settings.teamNumber + '';
-      while (teamNumber.length < 4) {
+      while (teamNumber.length < 3) {
         teamNumber = '0' + teamNumber;
       }
-      return '10.' + teamNumber.substring(0, 2) + '.' + teamNumber.substring(2) + '.2';
+      return '10.' + teamNumber.substr(0, teamNumber.length - 2) + '.' + teamNumber.substring(teamNumber.length - 2) + '.2';
     };
   });

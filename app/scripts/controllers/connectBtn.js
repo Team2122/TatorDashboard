@@ -38,7 +38,9 @@ angular.module('TatorDashboard')
       }
     });
     client.on('error', function (err) {
-      $scope.btn = btnStates.error;
+      $scope.$apply(function () {
+        $scope.btn = btnStates.error;
+      });
       alerts.add('danger', 'TatorDashboard client error: ' + err);
     });
     $scope.btnClick = function () {
