@@ -14,8 +14,10 @@
         </div>
         <div class="navbar-collapse collapse" collapse="isCollapsed">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-repeat="link in links" ui-sref-active="active">
-                    <a ui-sref="{{link.sref}}"><i class="fa ng-class: link.icon"></i> {{link.name}}</a>
+                <li ng-repeat="link in links" ng-class="{'disabled': link.disabled, 'active': active($index)}">
+                    <a ng-click="go($index)">
+                        <i class="fa ng-class: link.icon"></i> {{link.name}}
+                    </a>
                 </li>
             </ul>
         </div>

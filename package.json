@@ -17,6 +17,7 @@
     "gulp-util": "latest",
     "jshint-stylish": "latest",
     "lodash": "latest",
+    "marked": "^0.3.2",
     "node-webkit-builder": "latest"
   },
   "scripts": {

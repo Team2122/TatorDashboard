@@ -10,6 +10,11 @@ angular.module('TatorDashboard', ['ui.router', 'ui.bootstrap', 'ui.sortable', 'n
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl'
       })
+      .state('checklist', {
+        url: '/checklist',
+        templateUrl: 'views/checklist.html',
+        controller: 'ChecklistCtrl'
+      })
       .state('dashboard.configs', {
         url: '/configs',
         templateUrl: 'views/configs.html',

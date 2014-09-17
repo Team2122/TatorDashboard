@@ -1,0 +1,14 @@
+<div class="bar-bottom-body">
+    <h1 class="page-header">
+        Checklist
+        <button class="btn btn-default" ng-hide="checking" ng-click="start()">Start Checklist</button>
+    </h1>
+    <form ng-show="checking">
+        <markdown md="checklist" options="options"></markdown>
+    </form>
+</div>
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <form class="form navbar-form">
+        <button class="btn btn-success" ng-show="checking" ng-disabled="!all" ng-click="done()">Done</button>
+    </form>
+</div>
