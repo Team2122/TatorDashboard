@@ -2,8 +2,8 @@
     <h2>Joysticks
         <small><i class="fa fa-plus" ng-click="add()"></i></small>
     </h2>
-    <div ng-show="buttons.length > 0" ui-sortable="sortable" ng-model="buttons">
-        <div class="well well-sm" ng-repeat="button in buttons track by $index">
+    <ul ng-show="buttons.length > 0" class="list-group" ui-sortable="sortable" ng-model="buttons">
+        <li class="list-group-item" ng-repeat="button in buttons track by $index">
             <form class="form-inline">
                 <i class="fa fa-trash" ng-click="remove($index)"></i>
                 <i class="fa fa-arrows handle"></i>
@@ -32,8 +32,8 @@
                     <input type="text" class="form-control" required ng-model="button.Command">
                 </div>
             </form>
-        </div>
-    </div>
+        </li>
+    </ul>
     <div ng-hide="buttons.length > 0" class="well">
         Load a config from the robot or the workspace
     </div>
