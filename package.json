@@ -17,6 +17,7 @@
     "gulp-util": "latest",
     "jshint-stylish": "latest",
     "lodash": "latest",
+    "moment": "^2.8.3",
     "node-webkit-builder": "latest"
   },
   "scripts": {
@@ -30,6 +31,6 @@
     "min_width": 768,
     "min_height": 200,
     "width": 1366,
-    "height": 450
+    "height": 480
   }
 }

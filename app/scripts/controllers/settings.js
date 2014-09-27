@@ -1,8 +1,5 @@
 'use strict';
 
-var path = require('path');
-var fs = require('fs');
-
 angular.module('TatorDashboard')
   .run(function (settings, alerts) {
     settings.defaults({
@@ -22,7 +19,7 @@ angular.module('TatorDashboard')
       }
     });
   })
-  .controller('SettingsCtrl', function ($scope, teamList, settings, alerts, nwDialogs) {
+  .controller('SettingsCtrl', function ($scope, teamList, settings, alerts, nwDialogs, fs, path) {
     function updateSettings() {
       $scope.settings = angular.copy(settings.settings);
     }

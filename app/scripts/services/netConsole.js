@@ -1,10 +1,8 @@
 'use strict';
 
 angular.module('TatorDashboard')
-  .factory('netConsole', function (robotIp) {
+  .factory('netConsole', function (robotIp, dgram, EventEmitter) {
     // From https://github.com/FRCTeam1073-TheForceTeam/netconsole.js
-    var dgram = require('dgram');
-    var EventEmitter = require('events').EventEmitter;
     var NETCONSOLE_RECEIVE_PORT = 6666;
     var NETCONSOLE_SEND_PORT = 6668;
     var lineBuf = '';

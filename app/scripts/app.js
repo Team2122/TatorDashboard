@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('TatorDashboard', ['ui.router', 'ui.bootstrap', 'ui.sortable', 'ngAnimate', 'ngSanitize'])
+angular.module('TatorDashboard', ['ui.router', 'ui.bootstrap', 'ui.sortable', 'ngAnimate', 'ngSanitize', 'highcharts-ng'])
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/dashboard');
 
@@ -19,6 +19,11 @@ angular.module('TatorDashboard', ['ui.router', 'ui.bootstrap', 'ui.sortable', 'n
         url: '/joysticks',
         templateUrl: 'views/joysticks.html',
         controller: 'JoysticksCtrl'
+      })
+      .state('dashboard.sensors', {
+        url: '/sensors',
+        templateUrl: 'views/sensors.html',
+        controller: 'SensorsCtrl'
       })
       .state('settings', {
         url: '/settings',

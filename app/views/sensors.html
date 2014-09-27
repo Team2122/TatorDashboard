@@ -1,0 +1,34 @@
+<div class="bar-bottom-body">
+    <h2>Sensors</h2>
+    <div class="row">
+        <highchart class="col-sm-6 col-md-3" config="voltageGauge"></highchart>
+        <highchart class="col-sm-6 col-md-3" config="currentGauge"></highchart>
+        <highchart class="col-sm-6 col-md-3" config="flukeCurrentGauge"></highchart>
+        <highchart class="col-sm-6 col-md-3" config="currentGauge"></highchart>
+        <form class="form form-inline">
+            <label class="control-label">Samples: </label>
+            <div class="btn-group" ng-model="samples">
+                <button class="btn btn-default" btn-radio="50">50</button>
+                <button class="btn btn-default" btn-radio="250">250</button>
+                <button class="btn btn-default" btn-radio="1000">1000</button>
+            </div>
+        </form>
+        <highchart class="col-xs-12" config="timeGraph"></highchart>
+    </div>
+</div>
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <form class="form navbar-form">
+        <button class="btn btn-success" ng-click="start()" ng-disabled="enabled">
+            <i class="fa fa-play"></i> Start
+        </button>
+        <button class="btn btn-warning" ng-click="pause()" ng-disabled="!enabled">
+            <i class="fa fa-pause"></i> Pause
+        </button>
+        <button class="btn btn-danger" ng-click="stop()" ng-disabled="!enabled">
+            <i class="fa fa-stop"></i> Stop
+        </button>
+        <button class="btn btn-primary" ng-click="save()">
+            <i class="fa fa-floppy-o"></i> Save
+        </button>
+    </form>
+</div>

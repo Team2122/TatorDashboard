@@ -32,6 +32,11 @@ angular.module('TatorDashboard')
           name: 'Joysticks',
           icon: 'fa-gamepad',
           sref: 'dashboard.joysticks'
+        },
+        {
+          name: 'Sensors',
+          icon: 'fa-line-chart',
+          sref: 'dashboard.sensors'
         }
       ]
     ];

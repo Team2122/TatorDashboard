@@ -1,9 +1,7 @@
 'use strict';
 
 angular.module('TatorDashboard')
-  .factory('client', function (robotIp) {
-    var net = require('net');
-    var EventEmitter = require('events').EventEmitter;
+  .factory('client', function (robotIp, net, EventEmitter) {
     var client = new EventEmitter();
     var nextId = 1;
 

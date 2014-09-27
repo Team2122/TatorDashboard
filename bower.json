@@ -15,7 +15,8 @@
     "angular-animate": "latest",
     "angular-sanitize": "latest",
     "angular-ui-sortable": "latest",
-    "angular-ui-router": "latest"
+    "angular-ui-router": "latest",
+    "highcharts-ng": "~0.0.7"
   },
   "ignore": [
     "**/.*",

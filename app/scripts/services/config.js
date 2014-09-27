@@ -1,10 +1,7 @@
 'use strict';
 
 angular.module('TatorDashboard')
-  .factory('config', function (client, settings) {
-    var fs = require('fs');
-    var path = require('path');
-
+  .factory('config', function (client, settings, fs, path) {
     function getConfigFileName() {
       var workspace = settings.settings.workspace;
       var project = settings.settings.project;

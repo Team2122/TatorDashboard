@@ -1,13 +1,13 @@
 'use strict';
 
-var format = require('util').format;
-
 angular.module('TatorDashboard')
-  .controller('NetConsoleCtrl', function ($scope, netConsole, netConsoleBuffer, alerts, settings, robotIp) {
+  .controller('NetConsoleCtrl', function ($scope, netConsole, netConsoleBuffer, alerts, settings, robotIp, util) {
     $scope.robotIp = '';
     settings.whenLoaded(function () {
       $scope.robotIp = robotIp();
     });
+
+    var format = util.format;
 
     function highlightLine(line) {
       var highlights = {

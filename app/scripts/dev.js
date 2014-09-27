@@ -6,7 +6,7 @@
 
 // Livereload
 angular.module('TatorDashboard')
-  .run(function ($state, alerts) {
+  .run(function ($state, alerts, net) {
     process.on('uncaughtException', function (e) {
       try {
         var message;
@@ -21,7 +21,6 @@ angular.module('TatorDashboard')
         global.console.log("Well we're screwed. The exception handling routine threw an error. FML: " + what);
       }
     });
-    var net = require('net');
     var client = net.connect(9292);
     client.on('data', function (data) {
       if (data.toString() === 'reload') {

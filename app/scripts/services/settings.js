@@ -1,11 +1,8 @@
 'use strict';
 
 angular.module('TatorDashboard')
-  .factory('settings', function ($q) {
-    var path = require('path');
-    var fs = require('fs');
-    var EventEmitter = require('events').EventEmitter;
-    var SETTINGS_FILE_NAME = path.join(process.env.PWD || path.dirname(process.execPath), '.settings.json');
+  .factory('settings', function ($q, pwd, fs, EventEmitter) {
+    var SETTINGS_FILE_NAME = pwd.in('.settings.json');
 
     var settings = new EventEmitter();
 
