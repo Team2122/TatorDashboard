@@ -13,7 +13,7 @@ angular.module('TatorDashboard')
 
     settings.defaults = function (defaults) {
       Object.keys(defaults).forEach(function (key) {
-        if (!settings.settings[key]) {
+        if (settings.settings[key] === null || settings.settings[key] === undefined) {
           settings.settings[key] = defaults[key];
         }
       });
